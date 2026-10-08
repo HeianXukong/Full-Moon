@@ -32,7 +32,7 @@ async function updateSimulationControls() {
             body: JSON.stringify({ bankOutage, fraudRingProtection })
         });
     } catch (err) {
-        console.error('Failed to update simulation flags', err);
+        console.error('Failed to update ', err);
     }
 }
 
@@ -51,7 +51,7 @@ async function sendOtp() {
         });
         const data = await res.json();
         if (res.ok) {
-            alert(`OTP Sent! Use OTP: ${data.demoOtp} for testing.`);
+            alert(`OTP Sent! Use OTP: ${data.demoOtp}.`);
             document.getElementById('regOtp').value = data.demoOtp;
         } else {
             alert(data.error);
@@ -76,7 +76,7 @@ async function handleRegister(e) {
         });
         const data = await res.json();
         if (res.ok) {
-            alert('Registration Successful! Account credited with ₹11,000. Logging in...');
+            alert('Registration Successful!');
             currentUser = data.user;
             renderDashboard();
         } else {
@@ -257,7 +257,7 @@ async function loadHistory() {
         
         const container = document.getElementById('txHistoryList');
         if (!txList || txList.length === 0) {
-            container.innerHTML = `<div class="text-center text-[#8b949e] py-12 text-xs code-font">No transactions recorded in ledger.</div>`;
+            container.innerHTML = `<div class="text-center text-[#8b949e] py-12 text-xs code-font">No transactions History.</div>`;
             return;
         }
 
